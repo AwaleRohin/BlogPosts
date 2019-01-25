@@ -1,0 +1,16 @@
+{% extends 'blog/layout.html' %}
+
+{% block content %}
+    <div class="card w-50 text-center mx-auto mt-5">
+        <div class="card-header">
+            <p>Login Form</p>
+        </div>
+        <div class="card-body">
+            <form method="POST" class="form text-center">
+                {%  csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}
