@@ -3,14 +3,15 @@
 {% block content %}
     <div class="card w-50 text-center mx-auto mt-5">
         <div class="card-header">
-            <h4>Login Form</h4>
+            <h4>Create New Post</h4>
         </div>
         <div class="card-body">
-            <form method="POST" class="form text-center">
-                {%  csrf_token %}
+            <form method="POST" class="comment-form form">
+                {% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" value="Submit"/>
+                <button type="submit" class="btn btn-info">Create</button><hr>
             </form>
         </div>
     </div>
 {% endblock %}
+

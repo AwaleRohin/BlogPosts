@@ -2,22 +2,28 @@
 
 {%  block content %}
     <div class="container">
-        {% for post in posts %}
-            <div class="card m-4">
-                <div class="card-header">
-                    <h4><a href="{% url 'post_details' pk=post.pk %}">{{ post.tittle }}</a></h4>
+        <div class="row d-flex flex-wrap p-2">
+            {% for post in posts %}
+                <div class="card m-4" style="width:500px;">
+                    <div class="card-header">
+                        <h4><a href="{% url 'post_details' pk=post.pk %}">{{ post.tittle }}</a>
+                        {% if user.is_authenticated %}
+                            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><i class="fa fa-pencil-square-o ml-auto" aria-hidden="true"></i></a>
+                        {% endif %}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>{{ post.text}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p>Created : {{ post.created_date }}
+                        <a href="{% url 'post_details' pk=post.pk %}" class="btn btn-info ml-5">View</a></p>
+                        {% for comment in post.comment.values %}
+                            <p>{{ comment.author }} :{{ comment.text }}</p>
+                         {% endfor %}
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p>{{ post.text}}</p>
-                </div>
-                <div class="card-footer">
-                    <address>Created : {{ post.created_date }}</address>
-                    {% for comment in post.comment.values %}
-                        <p>{{ comment.author }} :{{ comment.text }}</p>
-                     {% endfor %}
-                </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
 
