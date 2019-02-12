@@ -1,0 +1,24 @@
+{% extends 'blog/layout.html' %}
+
+{%  block content %}
+    <div class="container-fluid w-50">
+    <div class="row mx-auto">
+        <div class="col-md-4"></div>
+       <div class="col-md-4">
+            <h2 class="text-center">Categories</h2>
+            <hr>
+            {% if cat %}
+                {% for cate in cat %}
+                    <div class="list-group text-center mb-2">
+                        <a href="{% url 'post_list' pk=cate.pk%}" class="list-group-item list-group-item-action">{{ cate.title }}</a>
+                    </div>
+                {% endfor %}
+           {% else %}
+
+           {% endif %}
+           <br>
+       </div>
+    </div>
+        <div class="col-md-4"></div>
+</div>
+{% endblock %}

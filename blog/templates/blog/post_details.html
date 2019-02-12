@@ -2,10 +2,14 @@
 
 {% block content %}
     <div class="container mx-auto mt-4">
-        <h4 class="text-center">{{ post.tittle }}</h4>
-        <p>{{ post.text }}</p>
-        <p>Author : {{ post.author }}</p>
-        <p> {{ post.created_date }}</p>
+
+            <h4 class="text-center">{{ post.tittle }}</h4>
+            <p>{{ post.text }}</p>
+            <p>Author : {{ post.author }}</p>
+            <p> {{ post.published_date }}
+                {% if user.is_authenticated %}
+                    <a class="btn btn-default ml-auto" href="{% url 'post_edit' pk=post.pk %}"><i class="fa fa-pencil-square-o ml-5" aria-hidden="true">Edit</i></a>
+                {% endif %}</p>
         <hr><h6>Leave Your Comments Here:</h6>
         <form method="POST" action="{% url 'post_details' post.id %}" class="comment-form form">
             {% csrf_token %}
@@ -15,7 +19,8 @@
         <h6>Comments:</h6>
         {% if post.comment.values|length > 0 %}
             {% for comment in post.comment.values %}
-                    <p>{{ comment.author }} : {{ comment.text }}</p>
+                <p class="mb-0">{{ comment.author }} : {{ comment.text }}</p>
+                <p class='mb-2' style="font-size:12px">{{ comment.created_date }}</p>
             {% endfor %}
         {% else %}
                 <p>No Comments Posted Yet!!</p>

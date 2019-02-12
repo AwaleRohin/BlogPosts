@@ -23,17 +23,16 @@
 
             <ul class="navbar-nav ml-auto text-primary">
                 <li class="nav-item">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-primary" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
-                 {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'post_create' %}">Create Post <span class="sr-only">(current)</span></a>
-                    </li>
-                 {% else %}
-                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Create Post <span class="sr-only">(current)</span></a>
-                    </li>
-                {% endif %}
+
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href="{% url 'post_create' %}">Create Post <span class="sr-only"></span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href="{% url 'post_drafts' %}">View Drafts <span class="sr-only"></span></a>
+                </li>
 
                 {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -42,13 +41,14 @@
                                 Hi {{ user.username }}!
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <p><a class="dropdown-item" href="{% url 'logout' %}">logout</a></p>
+                                <a class="dropdown-item" href="{% url 'logout' %}">logout</a>
                             </div>
+                        </div>
                     </li>
                 {% else %}
-                <li class="nav-item text-primary ">
-                <a class="nav-link" href="{% url 'login' %} ">Login <span class="sr-only">(current)</span></a>
-                </li>
+                    <li class="nav-item text-primary ">
+                        <a class="nav-link" href="{% url 'login' %} ">Login <span class="sr-only">(current)</span></a>
+                    </li>
                 {% endif  %}
             </ul>
             <!-- Right side of navbar-->
@@ -57,7 +57,13 @@
     </nav>
 
     <!-- navigation bar -->
-
+{% if messages %}
+    <div class="'alert alert-warning alert-dismissible fade show text-center" role="'alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
 {% block content %}
 
 {% endblock %}

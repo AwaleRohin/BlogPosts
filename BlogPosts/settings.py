@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'blog.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'BlogPosts.urls'
@@ -120,3 +121,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_URL = '/accounts/login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+LOGIN_EXEMPT_URLS = (
+    r'^accounts/logout/$',
+    r'^$',
+    r'^<int:pk>/$',
+    r'^post/<int:pk>/$',
+)

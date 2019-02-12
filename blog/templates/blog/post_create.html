@@ -6,10 +6,11 @@
             <h4>Create New Post</h4>
         </div>
         <div class="card-body">
-            <form method="POST" class="comment-form form">
+            <form method="POST" class="post-form form">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-info">Create</button><hr>
+                <button type="submit" class="btn btn-info" value="create" name="create">Create</button>
+                <button type="submit" class="btn btn-info" value="draft" name="draft">Draft</button><hr>
             </form>
         </div>
     </div>
