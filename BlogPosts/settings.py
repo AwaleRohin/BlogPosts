@@ -128,7 +128,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 LOGIN_EXEMPT_URLS = (
     r'^accounts/logout/$',
-    r'^$',
-    r'^<int:pk>/$',
-    r'^post/<int:pk>/$',
+#     r'^$',
+#     r'^<int:pk>/$',
+#     r'^post/<int:pk>/$',
 )
